@@ -21,21 +21,17 @@ def count_bob(text):
 
 
 def get_longest_alph(text):
+    # print "Longest substring in alphabetical order is:", get_longest_alph(s)
     longest = ''
     cur_alph = ''
     cur_pos = 0
     while cur_pos < len(text):
-        print 'current_char:', text[cur_pos], cur_pos
         cur_alph += text[cur_pos]
         if cur_pos == len(text) - 1 or ord(text[cur_pos]) > ord(text[cur_pos + 1]):
-            print "nonalphabetic", cur_alph, '-?-', longest
-            if len(longest) <= len(cur_alph):
+            if len(longest) < len(cur_alph):
                 longest = cur_alph
             cur_alph = ''
-        else:
-            print "alphabetic", cur_alph
         cur_pos += 1
-    
     return longest
 
 
@@ -52,7 +48,8 @@ class TestWordCounters(unittest.TestCase):
     def test_alphabetical(self):
         self.assertEqual(get_longest_alph('abcd'), 'abcd')
         self.assertEqual(get_longest_alph('azcbobobegghakl'), 'beggh')
-        self.assertEqual(get_longest_alph('abcbcd'), 'bcd')
+        self.assertEqual(get_longest_alph('abcbcd'), 'abc')
+        self.assertEqual(get_longest_alph('sewswkjvzpobywpyzbetsx'), 'jvz')
 
 
 if __name__ == '__main__':
