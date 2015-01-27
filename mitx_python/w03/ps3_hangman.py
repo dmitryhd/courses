@@ -115,25 +115,31 @@ def hangman(secretWord):
         print("-------------")
         print("You have {} guesses left.".format(8 - mistakesMade))
         print("Available letters: {}".format(getAvailableLetters(lettersGuessed)))
-        print(lettersGuessed)
         letter = raw_input('Please guess a letter:')
         letter = letter.lower()
         if letter in lettersGuessed:
             print("Oops! You've already guessed that letter: {}".format(getGuessedWord(secretWord, lettersGuessed)))
             return 2
         if letter in secretWord:
-            print("Good guess: {}".format(getGuessedWord(secretWord, lettersGuessed)))
             lettersGuessed.append(letter)
+            print("Good guess: {}".format(getGuessedWord(secretWord, lettersGuessed)))
             return 0
         else:
             print("Oops! That letter is not in my word: {}".format(getGuessedWord(secretWord, lettersGuessed)))
+            lettersGuessed.append(letter)
             return 1
 
     while True:
         res = guess()
         if res == 1: # omg
             mistakesMade += 1
-        if res == 0 and getGuessedWord(secretWord, lettersGuessed):
+            if mistakesMade == 8:
+                print('-----------')
+            	print('Sorry, you ran out of guesses. The word was else.')
+                return
+        if res == 0 and isWordGuessed(secretWord, lettersGuessed):
+            print('------------')
+            print('Congratulations, you won!')
             return
             
 

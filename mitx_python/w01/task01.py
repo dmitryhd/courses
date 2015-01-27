@@ -3,6 +3,7 @@
 import unittest
 
 def count_vowels(text):
+    # print "Number of vowels:", count_vowels(s)
     VOWELS = ['a', 'e', 'i', 'o', 'u']
     cnt = 0
     for char in text:
