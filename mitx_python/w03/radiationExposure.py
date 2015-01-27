@@ -3,6 +3,7 @@
 import math
 import unittest
 
+
 def f(x):
     return 10*math.e**(math.log(0.5)/5.27 * x)
 
